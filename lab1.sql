@@ -1,0 +1,24 @@
+CREATE DATABASE lab1;
+
+CREATE TABLE users (
+  id SERIAL,
+  firstname VARCHAR(50),
+  lastname VARCHAR(50),
+  isadmin BOOLEAN DEFAULT FALSE
+);
+
+ALTER TABLE users
+ADD CONSTRAINT pk_id PRIMARY KEY (id);
+
+CREATE TABLE tasks (
+  id SERIAL,
+  name VARCHAR(50),
+  user_id INT,
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+DROP TABLE tasks;
+
+DROP TABLE users;
+
+DROP DATABASE lab1;
